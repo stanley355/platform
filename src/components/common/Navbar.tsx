@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaBuffer, FaSearch, FaShoppingCart, FaUser } from 'react-icons/fa';
+import Cookies from 'js-cookie';
+import { decode } from 'jsonwebtoken';
 
 const Navbar = () => {
+  const [userToken, setUserToken] = useState("");
+  const user:any = userToken ? decode(userToken) : null;
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) setUserToken(token);
+  }, [userToken]);
 
   const SearchForm = () => (
     <form action="" className='w-full p-4 px-2'>
@@ -28,8 +37,8 @@ const Navbar = () => {
           <SearchForm />
         </div>
         <div className='flex items-center gap-4 lg'>
-          <Link href="/login" className='flex items-center gap-2'>
-            <span className='text-sm'>Sign in </span>
+          <Link href={userToken ? "/account" : "/login"} className='flex items-center gap-2'>
+            <div className='text-sm'>{user ? user?.name : "Masuk"}</div>
             <FaUser className="text-xl" />
           </Link>
           <FaShoppingCart className="text-2xl" />
