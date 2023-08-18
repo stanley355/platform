@@ -62,3 +62,5 @@ export const HOME_HERO_CARDS = [
   },
   
 ]
+
+export const EMPTY_CART_SVG = 'https://m.media-amazon.com/images/G/01/cart/empty/kettle-desaturated._CB445243794_.svg';

@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </main>
-      <footer className="flex justify-center ">
+      <footer className="flex items-center justify-center bg-primary-color py-2 text-white gap-2">
         Copyright <FaCopyright /> InGoods {new Date().getFullYear()}
       </footer>
     </>

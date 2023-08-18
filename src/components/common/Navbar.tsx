@@ -6,7 +6,7 @@ import { decode } from 'jsonwebtoken';
 
 const Navbar = () => {
   const [userToken, setUserToken] = useState("");
-  const user:any = userToken ? decode(userToken) : null;
+  const user: any = userToken ? decode(userToken) : null;
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -41,7 +41,9 @@ const Navbar = () => {
             <div className='text-sm'>{user ? user?.name : "Masuk"}</div>
             <FaUser className="text-xl" />
           </Link>
-          <FaShoppingCart className="text-2xl" />
+          <Link href="/cart" title='Shopping Cart'>
+            <FaShoppingCart className="text-2xl" />
+          </Link>
         </div>
       </div>
       <div className='block lg:hidden'>
