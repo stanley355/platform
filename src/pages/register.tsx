@@ -5,21 +5,22 @@ import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import GoogleLoginBtn from '@/components/app/login/GoogleLoginBtn';
 
-const Login = () => {
+const Register = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const target = e.target as any;
     const email = target.email.value;
+    const name = target.name.value;
     const password = target.password.value;
 
-    if (!email || !password) {
-      alert("Email dan Password wajib diisi!");
+    if (!email || !name && !password) {
+      alert("Email, Nama Lengkap, dan Password wajib diisi!");
       return;
     }
 
-    const token = jwt.sign({ email }, 'secret');
+    const token = jwt.sign({ email, name }, 'secret');
     Cookies.set("token", token);
     window.location.href = "/";
   }
@@ -27,10 +28,10 @@ const Login = () => {
   return (
     <div className='container mx-auto h-[90vh] lg:h-screen p-2'>
       <div className='lg:w-[400px] lg:mx-auto'>
-        <div className='text-lg font-semibold mb-4 lg:hidden'>Login</div>
+        <div className='text-lg font-semibold mb-4 lg:hidden'>Buat Akun</div>
         <Link href="/" className='items-center gap-2 text-xl hidden lg:flex w-fit mx-auto my-4'>
           <FaBuffer className="text-2xl" />
-          <span>InGoods Login</span>
+          <span>InGoods Register</span>
         </Link>
         <div className='border border-gray-400 rounded p-2'>
           <div className='w-fit mx-auto mb-4'>
@@ -42,6 +43,10 @@ const Login = () => {
               <input type="email" name='email' id='email' className='rounded border border-gray-400 p-1' />
             </div>
             <div className='flex flex-col mb-4'>
+              <label htmlFor="name">Nama Lengkap</label>
+              <input type="text" name='name' id='name' className='rounded border border-gray-400 p-1' />
+            </div>
+            <div className='flex flex-col mb-4'>
               <label htmlFor="password">Password</label>
               <input type="password" name='password' id='password' className='rounded border border-gray-400 p-1' />
             </div>
@@ -51,11 +56,11 @@ const Login = () => {
               * Dengan melanjutkan, Anda setuju pada Ketentuan Penggunaan dan Pemberitahuan Privasi InGoods.
             </div>
           </form>
-          <Link href="/register/" className='text-blue-600'>Buat Akun</Link>
+          <Link href="/login/" className='text-blue-600'>Login</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
