@@ -11,10 +11,12 @@ import HomeBestInternational from '@/components/app/home/BestInternational';
 import HomeBestLocal from '@/components/app/home/BestLocal';
 import HomeToysCards from '@/components/app/home/ToysCard';
 import HomeCategoryCards from '@/components/app/home/CategoryCards';
+import Layout from '@/components/common/Layout';
 
 const Home = () => {
   return (
-    <div>
+    <Layout>
+
       <div className='bg-yellow-300 text-primary-color py-1 font-semibold'>
         <div className='text-center'>InGoods</div>
         <div className='text-center'>Import Murah & Berkualitas</div>
@@ -46,7 +48,7 @@ const Home = () => {
         <HomeToysCards />
         <HomeCategoryCards />
       </div>
-    </div>
+    </Layout>
   )
 };
 
