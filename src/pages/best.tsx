@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { BEST_SELLERS } from '@/lib/cart/constant';
 import Layout from '@/components/common/Layout';
@@ -9,7 +9,7 @@ import { removeCurrency } from '@/util/removeCurrency';
 
 const BestSeller = (props: any) => {
   const { items } = props;
-  
+
   return (
     <Layout>
       <div className='container mx-auto bg-gray-100'>
@@ -47,7 +47,7 @@ const BestSeller = (props: any) => {
 };
 
 export default BestSeller;
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}api/amazon/bestsellers/`;
   const items = await fetch(url);
 
