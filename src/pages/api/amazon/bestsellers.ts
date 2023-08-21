@@ -24,7 +24,7 @@ const scraperAPI = async (req: NextApiRequest, res: NextApiResponse) => {
         imgSrc: img.src,
         imgAlt: img.alt,
         soldAmount: soldAmount.innerText,
-        price: Number(price.innerText.replace("$", "")),
+        price: price.innerText,
       };
     });
   });
