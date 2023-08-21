@@ -20,6 +20,8 @@ const parseItemData = async (page: any) => {
     const ratingAmount: any = document.querySelector("#acrCustomerReviewText");
     const discountPercentage: any =
       document.querySelector(".savingsPercentage");
+
+    const price:any = document.querySelector(".a-price-whole");
     const finalPrice: any = document.querySelector(
       ".priceToPay > span.a-offscreen"
     );
@@ -27,14 +29,23 @@ const parseItemData = async (page: any) => {
       ".a-text-price > span.a-offscreen"
     );
 
+    const mainImg:any = document.querySelector("#landingImage");
+    const description: any = document.querySelector("#productDescription > p > span");
+
     return {
+      mainImg: {
+        src: mainImg?.src,
+        alt: mainImg?.alt
+      },
       imgList: imgList,
       title: productTitle?.innerText,
       rating: rating?.innerText,
       ratingAmount: ratingAmount?.innerText,
       discountPercentage: discountPercentage?.innerText,
+      price: price?.innerText,
       finalPrice: finalPrice?.innerText,
       initialPrice: initialPrice?.innerText,
+      description: description?.innerText
     };
   });
 };
@@ -61,14 +72,14 @@ const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   await browser.close();
 
   if (!data.title) {
-    const newURL = url.replace(".com", ".com.au");
+    const newURL = url.replace(".com", ".sg");
     await page.goto(newURL, { waitUntil: "domcontentloaded" });
     data = await parseItemData(page);
     await browser.close();
   }
 
   if (!data.title) {
-    const newURL = url.replace(".com", ".sg");
+    const newURL = url.replace(".com", ".com.au");
     await page.goto(newURL, { waitUntil: "domcontentloaded" });
     data = await parseItemData(page);
     await browser.close();

@@ -6,6 +6,7 @@ import { BEST_SELLERS } from '@/lib/cart/constant';
 import { EMPTY_CART_SVG } from '@/lib/home/constant';
 import { dollarToRupiah } from '@/util/dollarToRupiah';
 import { replaceAmazon } from '@/util/replaceAmazon';
+import { removeCurrency } from '@/util/removeCurrency';
 
 const ShoppingCart = () => {
   return (
@@ -31,7 +32,7 @@ const ShoppingCart = () => {
                   <img src={best.imgSrc} alt={best.imgAlt} />
                   <div className='font-semibold mt-4'>{best.imgAlt.replace("Amazon", "")}</div>
                   <div className='text-sm text-gray-500'>Terjual : {best.soldAmount} </div>
-                  <div className='text-red-700 font-semibold'>{dollarToRupiah(Number(best.price.replace("$", "")))}</div>
+                  <div className='text-red-700 font-semibold'>{dollarToRupiah(removeCurrency(best.price))}</div>
                 </Link>
               )}
             </div>
@@ -46,7 +47,7 @@ const ShoppingCart = () => {
                 <img src={best.imgSrc} alt={best.imgAlt} />
                 <div className='font-semibold mt-4'>{best.imgAlt.replace("Amazon", "")}</div>
                 <div className='text-sm text-gray-500'>Terjual : {best.soldAmount} </div>
-                <div className='text-red-700 font-semibold'>{dollarToRupiah(Number(best.price.replace("$", "")))}</div>
+                <div className='text-red-700 font-semibold'>{dollarToRupiah(removeCurrency(best.price))}</div>
               </Link>
             )}
           </div>
