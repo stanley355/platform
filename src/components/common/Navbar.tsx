@@ -13,11 +13,22 @@ const Navbar = () => {
     if (token) setUserToken(token);
   }, [userToken]);
 
+  const formHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const target = e.target as any;
+    const keywords = target.keywords.value;
+
+    if (!keywords) return;
+
+    window.location.href = `/search?keywords=${keywords}`;
+  }
+
   const SearchForm = () => (
-    <form action="" className='w-full p-4 px-2'>
-      <div className='w-full rounded-md bg-white flex items-center'>
+    <form onSubmit={formHandler} className='w-full p-4 px-2'>
+      <div className='w-full rounded-md bg-white flex items-center text-black'>
         <label htmlFor="search" className='w-full'>
-          <input type="text" name='search' id='search' className='p-2 w-full rounded-l-md' placeholder='Cari Barang Impor' />
+          <input type="text" name='keywords' id='search' className='p-2 w-full rounded-l-md' placeholder='Cari Barang Impor' />
         </label>
         <button type='submit' className='bg-yellow-500 text-primary-color text-2xl p-2 rounded-md'>
           <FaSearch />

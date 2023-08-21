@@ -6,7 +6,7 @@ const HomePromoCards = () => {
   return (
     <div className='p-4 w-full border-b border-gray-300 lg:hidden'>
       <div className='font-semibold mb-4 text-lg'>Promo Belanja</div>
-      <Link href="/furniture" className='w-full'>
+      <Link href="/search?keywords=furniture" className='w-full'>
         <Image src="/images/home/home_furniture.jpg" alt='InGoods Furniture' width={200} height={200} className='w-[50%] h-auto mx-auto' />
       </Link>
       <div className='bg-red-500 text-white p-1 w-fit rounded text-sm mt-4'>Diskon Hingga 46%</div>

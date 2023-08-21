@@ -38,12 +38,12 @@ const SearchPage = (props: any) => {
         <div className='lg:grid lg:grid-cols-4 lg:gap-4'>
 
           {searchData.length > 3 && searchData.map((search: any) =>
-            <div key={search.title} className='p-4 rounded bg-white mb-4'>
+            <a key={search.title} className='p-4 rounded bg-white mb-4 cursor-pointer'>
               <img src={search.imgSrc} alt={search.imgAlt} width={400} height={400} className='w-full h-auto max-h-[400px]' />
               <div className='mt-4 font-semibold'>{search.title}</div>
               <div className='text-sm text-gray-500'>Rating: {search.rating} dari 5</div>
               {search.price && <div className='text-xl'>{dollarToRupiah(removeCurrency(search?.price))}</div>}
-            </div>
+            </a>
           )}
         </div>
         <div className='mt-8 bg-white overflow-x-auto'>

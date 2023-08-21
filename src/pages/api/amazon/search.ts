@@ -45,24 +45,24 @@ const amazonSearchAPI = async (req: NextApiRequest, res: NextApiResponse) => {
     isMobile: false,
   });
 
-  const url = String("https://amazon.sg/s?k=" + req.query.keywords);
+  const url = String("https://amazon.com/s?k=" + req.query.keywords);
   await page.goto(url, { waitUntil: "domcontentloaded" });
   let data = await parseSearchData(page);
   await browser.close();
 
-  // if (!data.price || !data.finalPrice) {
-  //   const newURL = url.replace(".com", ".com.au");
-  //   await page.goto(newURL, { waitUntil: "domcontentloaded" });
-  //   data = await parseSearchData(page);
-  //   await browser.close();
-  // }
+  if (data.length < 3) {
+    const newURL = url.replace(".com", ".com.au");
+    await page.goto(newURL, { waitUntil: "domcontentloaded" });
+    data = await parseSearchData(page);
+    await browser.close();
+  }
 
-  // if (!data.price || !data.finalPrice) {
-  //   const newURL = url.replace(".com", ".sg");
-  //   await page.goto(newURL, { waitUntil: "domcontentloaded" });
-  //   data = await parseSearchData(page);
-  //   await browser.close();
-  // }
+  if (data.length < 3) {
+    const newURL = url.replace(".com", ".sg");
+    await page.goto(newURL, { waitUntil: "domcontentloaded" });
+    data = await parseSearchData(page);
+    await browser.close();
+  }
 
   res.send(data);
 };

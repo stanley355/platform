@@ -33,32 +33,38 @@ export const HOME_HERO_CARDS = [
   {
     title: "Lanjut Belanja",
     alt: "InGoods Laptop",
-    src: "/images/home/home_hero_card_1.png"
+    src: "/images/home/home_hero_card_1.png",
+    url: "/search?keywords=laptop"
   },
   {
     title: "Cek Promo dan Diskon",
     alt: "InGoods Promo",
-    src: "/images/home/home_hero_card_2.png"
+    src: "/images/home/home_hero_card_2.png",
+    url: "/best"
   },
   {
     title: "Promo Fashion Wanita",
     alt: "InGoods Fashion Wanita",
-    src: "/images/home/home_hero_card_6.png"
+    src: "/images/home/home_hero_card_6.png",
+    url: "/search?keywords=fashion trends"
   },
   {
     title: "Cari Mainan",
     alt: "InGoods Mainan",
-    src: "/images/home/home_hero_card_3.png"
+    src: "/images/home/home_hero_card_3.png",
+    url: "/search?keywords=toys"
   },
   {
     title: "Belanja Gadget",
     alt: "InGoods Gadget",
-    src: "/images/home/home_hero_card_4.png"
+    src: "/images/home/home_hero_card_4.png",
+    url: "/search?keywords=gadget"
   },
   {
     title: "Laptop dan Tablet",
     alt: "InGoods Laptop",
-    src: "/images/home/home_hero_card_5.png"
+    src: "/images/home/home_hero_card_5.png",
+    url: "/search?keywords=laptop and tablet"
   },
   
 ]
