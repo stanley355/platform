@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <nav className='bg-primary-color text-white w-full'>
-      <div className='flex items-center justify-between p-2 lg:bg-black lg:py-0'>
+      <div className='flex items-center justify-between p-2 lg:py-0'>
         <Link href="/" className='flex items-center gap-2 text-xl'>
           <FaBuffer className="text-2xl" />
           <span>InGoods</span>
@@ -48,14 +48,6 @@ const Navbar = () => {
       </div>
       <div className='block lg:hidden'>
         <SearchForm />
-      </div>
-      <div className='flex items-center p-2 gap-4 w-[200%] lg:w-full overflow-x-auto lg:justify-center'>
-        <span className='w-fit'>Best Sellers</span>
-        <span>Buku</span>
-        <span>Elektronik</span>
-        <span>Handphone & Tablet</span>
-        <span>Laptop & Komputer</span>
-        <span>Fashion</span>
       </div>
     </nav>
   )
