@@ -52,9 +52,9 @@ const Navbar = () => {
             <div className='text-sm'>{user ? user?.name : "Masuk"}</div>
             <FaUser className="text-xl" />
           </Link>
-          <Link href="/cart" title='Shopping Cart'>
+          <a href="/cart" title='Shopping Cart'>
             <FaShoppingCart className="text-2xl" />
-          </Link>
+          </a>
         </div>
       </div>
       <div className='block lg:hidden'>
