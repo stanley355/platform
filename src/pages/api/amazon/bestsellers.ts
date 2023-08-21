@@ -50,7 +50,6 @@ const amazonBestSellerAPI = async (
   const url = "https://www.amazon.com/gp/bestsellers/";
   await page.goto(url, { waitUntil: "domcontentloaded" });
   let data: any = await parseBestsellerPage(page);
-  console.log(data);
   await browser.close();
 
   if (data.length < 3) {
