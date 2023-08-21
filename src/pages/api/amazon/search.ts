@@ -15,6 +15,7 @@ const parseSearchData = async (page: any) => {
         const title = el.querySelector("h2");
         const rating = el.querySelector(".a-size-base");
         const price = el.querySelector(".a-offscreen");
+        const link = el.querySelector("a");
 
         return {
           imgSrc: img?.src,
@@ -22,6 +23,7 @@ const parseSearchData = async (page: any) => {
           title: title?.innerText,
           rating: rating?.innerText,
           price: price?.innerText,
+          link: link?.href
         };
       });
 

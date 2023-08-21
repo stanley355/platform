@@ -19,6 +19,25 @@ const ItemPage = (props: any) => {
     return <ItemFallbackSkeleton />
   }
 
+  const addToCart = () => {
+    const oldCart = localStorage.getItem("cart");
+    if (oldCart) {
+      const parse = JSON.parse(oldCart);
+      let newCart = structuredClone(parse);
+      newCart.push(item);
+      const stringify = JSON.stringify(newCart);
+      localStorage.setItem("cart", stringify);
+      alert("Item telah ditambahkan ke keranjang");
+      return;
+    }
+
+    const newCart = [item];
+    const stringify = JSON.stringify(newCart);
+    localStorage.setItem("cart", stringify);
+    alert("Item telah ditambahkan ke keranjang");
+    return;
+  }
+
   return (
     <Layout>
       <div className='container mx-auto min-h-[90vh]'>
@@ -47,14 +66,14 @@ const ItemPage = (props: any) => {
                 Old Price <s>{item?.initialPrice && dollarToRupiah(removeCurrency(item.initialPrice))}</s>
               </div>
             </div>}
-            {!item?.discountPercentage && (item?.finalPrice || item?.price) && <div className='text-xl'>{dollarToRupiah(removeCurrency(item?.finalPrice ? item?.finalPrice :  item?.price))}</div>}
-            {!item?.discountPercentage && !item?.price && !item.finalPrice && <div className='text-xl text-green-500'>Stok Habis</div> }
+            {!item?.discountPercentage && (item?.finalPrice || item?.price) && <div className='text-xl'>{dollarToRupiah(removeCurrency(item?.finalPrice ? item?.finalPrice : item?.price))}</div>}
+            {!item?.discountPercentage && !item?.price && !item.finalPrice && <div className='text-xl text-green-500'>Stok Habis</div>}
             <div>
               {item?.description}
             </div>
           </div>
           <div className='border-t border-gray-500 p-4 flex flex-col lg:w-1/3'>
-            <button className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2 mb-4'>
+            <button onClick={addToCart} className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2 mb-4'>
               <FaShoppingCart className="text-2xl" />
               <span>Tambah Keranjang</span>
             </button>
