@@ -16,7 +16,6 @@ import Layout from '@/components/common/Layout';
 const Home = () => {
   return (
     <Layout>
-
       <div className='bg-yellow-300 text-primary-color py-1 font-semibold'>
         <div className='text-center'>InGoods</div>
         <div className='text-center'>Import Murah & Berkualitas</div>
