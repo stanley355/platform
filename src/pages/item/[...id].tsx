@@ -2,20 +2,27 @@ import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { FaHandPointRight, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/common/Layout';
 import { removeCurrency } from '@/util/removeCurrency';
 import { dollarToRupiah } from '@/util/dollarToRupiah';
 import { BEST_SELLERS } from '@/lib/cart/constant';
 import { replaceAmazon } from '@/util/replaceAmazon';
+import ItemFallbackSkeleton from '@/components/app/item/FallbackSkeleton';
 
 
 const ItemPage = (props: any) => {
   const { item } = props;
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <ItemFallbackSkeleton />
+  }
 
   return (
     <Layout>
-      <div className='container mx-auto min-h-[85vh]'>
+      <div className='container mx-auto min-h-[90vh]'>
         <div className='lg:flex'>
           <div className='w-full p-4 lg:w-1/3'>
             <div className='w-full mb-4'>
@@ -41,7 +48,8 @@ const ItemPage = (props: any) => {
                 Old Price <s>{item?.initialPrice && dollarToRupiah(removeCurrency(item.initialPrice))}</s>
               </div>
             </div>}
-            {!item?.discountPercentage && item?.price && <div className='text-xl'>{dollarToRupiah(removeCurrency(item?.price))}</div>}
+            {!item?.discountPercentage && (item?.finalPrice || item?.price) && <div className='text-xl'>{dollarToRupiah(removeCurrency(item?.finalPrice ? item?.finalPrice :  item?.price))}</div>}
+            {!item?.discountPercentage && !item?.price && !item.finalPrice && <div className='text-xl text-green-500'>Stok Habis</div> }
             <div>
               {item?.description}
             </div>
@@ -49,11 +57,11 @@ const ItemPage = (props: any) => {
           <div className='border-t border-gray-500 p-4 flex flex-col lg:w-1/3'>
             <button className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2 mb-4'>
               <FaShoppingCart className="text-2xl" />
-              <span>Add To Cart</span>
+              <span>Tambah Keranjang</span>
             </button>
             <button className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2'>
               <FaHandPointRight className="text-2xl" />
-              <span>Buy Now</span>
+              <span>Beli Langsung</span>
             </button>
           </div>
         </div>
@@ -85,7 +93,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
     props: {
       item: await item.json()
     },
-    revalidate: 60 * 60 // 1 hour
+    revalidate: 10 // 10 secs
   }
 };
 

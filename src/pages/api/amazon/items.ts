@@ -71,15 +71,15 @@ const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   let data = await parseItemData(page);
   await browser.close();
 
-  if (!data.title) {
-    const newURL = url.replace(".com", ".sg");
+  if (!data.price || !data.finalPrice) {
+    const newURL = url.replace(".com", ".com.au");
     await page.goto(newURL, { waitUntil: "domcontentloaded" });
     data = await parseItemData(page);
     await browser.close();
   }
 
-  if (!data.title) {
-    const newURL = url.replace(".com", ".com.au");
+  if (!data.price || !data.finalPrice) {
+    const newURL = url.replace(".com", ".sg");
     await page.goto(newURL, { waitUntil: "domcontentloaded" });
     data = await parseItemData(page);
     await browser.close();
