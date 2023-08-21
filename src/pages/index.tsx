@@ -32,7 +32,7 @@ const Home = () => {
         <HomePromoCards />
         <HomeTrendingCards />
         <HomeShoesCards />
-        <Link href="/" className='w-full lg:flex'>
+        <Link href="/best" className='w-full lg:flex'>
           <Image src="/images/home/home_banner_1.jpg" alt='InGoods Beauty Products' width={400} height={50} className='w-full h-auto lg:w-[50%]' />
           <Image src="/images/home/home_banner_2.jpg" alt='InGoods Beauty Products' width={400} height={50} className='w-full h-auto lg:w-[50%] hidden lg:block' />
         </Link>
@@ -41,7 +41,7 @@ const Home = () => {
           <HomeBestInternational />
           <HomeBestLocal />
         </div>
-        <Link href="/" className='w-full lg:flex'>
+        <Link href="/best" className='w-full lg:flex'>
           <Image src="/images/home/home_banner_4.jpg" alt='InGoods Mainan dan Game' width={400} height={50} className='w-full h-auto lg:w-[50%]' />
           <Image src="/images/home/home_banner_3.jpg" alt='InGoods Sports and Outdoor' width={400} height={50} className='w-full h-auto lg:w-[50%] hidden lg:block' />
         </Link>

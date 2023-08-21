@@ -1,7 +1,6 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { FaHandPointRight, FaShoppingCart } from 'react-icons/fa';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Layout from '@/components/common/Layout';
@@ -69,12 +68,12 @@ const ItemPage = (props: any) => {
           <div className='text-lg font-semibold px-4'>Terlaris</div>
           <div className='w-max '>
             {BEST_SELLERS.map((best) =>
-              <Link href={(replaceAmazon(best.url, "/item"))} className='p-4 float-left w-[200px]' key={best.imgAlt}>
+              <a href={(replaceAmazon(best.url, "/item"))} className='p-4 float-left w-[200px]' key={best.imgAlt}>
                 <img src={best.imgSrc} alt={best.imgAlt} />
                 <div className='font-semibold mt-4'>{best.imgAlt.replace("Amazon", "")}</div>
                 <div className='text-sm text-gray-500'>Terjual : {best.soldAmount} </div>
                 <div className='text-red-700 font-semibold'>{dollarToRupiah(removeCurrency(best.price))}</div>
-              </Link>
+              </a>
             )}
           </div>
         </div>
@@ -93,7 +92,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
     props: {
       item: await item.json()
     },
-    revalidate: 10 // 10 secs
+    revalidate: 60 // 1min
   }
 };
 
