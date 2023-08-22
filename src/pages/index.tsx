@@ -13,6 +13,7 @@ import HomeBestLocal from '@/components/app/home/BestLocal';
 import HomeToysCards from '@/components/app/home/ToysCard';
 import HomeCategoryCards from '@/components/app/home/CategoryCards';
 import Layout from '@/components/common/Layout';
+import { Metadata } from 'next';
 
 const Home = () => {
   return (
