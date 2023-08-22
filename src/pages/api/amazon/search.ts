@@ -36,7 +36,7 @@ const amazonSearchAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const userAgent = new UserAgent();
   const browserObj = await puppeteerExtra.launch({
     headless: true,
-    executablePath: "/usr/bin/google-chrome",
+    executablePath: "/usr/bin/chromium-browser",
     args: ["--no-sandbox"],
   });
   const page = await browserObj.newPage();

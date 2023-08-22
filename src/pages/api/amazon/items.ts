@@ -21,7 +21,7 @@ const parseItemData = async (page: any) => {
     const discountPercentage: any =
       document.querySelector(".savingsPercentage");
 
-    const price:any = document.querySelector(".a-price-whole");
+    const price: any = document.querySelector(".a-price-whole");
     const finalPrice: any = document.querySelector(
       ".priceToPay > span.a-offscreen"
     );
@@ -29,13 +29,15 @@ const parseItemData = async (page: any) => {
       ".a-text-price > span.a-offscreen"
     );
 
-    const mainImg:any = document.querySelector("#landingImage");
-    const description: any = document.querySelector("#productDescription > p > span");
+    const mainImg: any = document.querySelector("#landingImage");
+    const description: any = document.querySelector(
+      "#productDescription > p > span"
+    );
 
     return {
       mainImg: {
         src: mainImg?.src,
-        alt: mainImg?.alt
+        alt: mainImg?.alt,
       },
       imgList: imgList,
       title: productTitle?.innerText,
@@ -45,7 +47,7 @@ const parseItemData = async (page: any) => {
       price: price?.innerText.replace("\n", ""),
       finalPrice: finalPrice?.innerText,
       initialPrice: initialPrice?.innerText,
-      description: description?.innerText
+      description: description?.innerText,
     };
   });
 };
@@ -53,12 +55,13 @@ const parseItemData = async (page: any) => {
 const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const browser = await puppeteer.launch({ headless: true });
 
+  console.log(111, req.query.url);
   const userAgent = new UserAgent();
   const browserObj = await puppeteerExtra.launch({
-	headless: true,
-  executablePath: "/usr/bin/google-chrome",
-	args: ['--no-sandbox'],
-});
+    headless: true,
+    executablePath: "/usr/bin/chromium-browser",
+    args: ["--no-sandbox"],
+  });
   const page = await browserObj.newPage();
   page.setUserAgent(userAgent.random().toString());
   await page.setViewport({
@@ -89,6 +92,7 @@ const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
     await browser.close();
   }
 
+  console.log(333, data);
   res.send(data);
 };
 
