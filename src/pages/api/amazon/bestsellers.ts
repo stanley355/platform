@@ -22,7 +22,7 @@ const parseBestsellerPage = async (page: any) => {
         imgSrc: img.src,
         imgAlt: img.alt,
         soldAmount: soldAmount.innerText,
-        price: price.innerText,
+        price: price.innerText.replace("\n", ""),
       };
     });
   });

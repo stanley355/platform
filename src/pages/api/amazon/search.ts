@@ -22,7 +22,7 @@ const parseSearchData = async (page: any) => {
           imgAlt: img?.alt,
           title: title?.innerText,
           rating: rating?.innerText,
-          price: price?.innerText,
+          price: price?.innerText.replace("\n", ""),
           link: link?.href
         };
       });

@@ -42,7 +42,7 @@ const parseItemData = async (page: any) => {
       rating: rating?.innerText,
       ratingAmount: ratingAmount?.innerText,
       discountPercentage: discountPercentage?.innerText,
-      price: price?.innerText,
+      price: price?.innerText.replace("\n", ""),
       finalPrice: finalPrice?.innerText,
       initialPrice: initialPrice?.innerText,
       description: description?.innerText
