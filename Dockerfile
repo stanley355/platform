@@ -14,6 +14,10 @@ ENV NEXT_PUBLIC_APP_ENV=$NEXT_PUBLIC_APP_ENV
 WORKDIR /app
 
 COPY package*.json ./
+RUN apk add -U --no-cache --allow-untrusted udev ttf-freefont chromium git
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV CHROMIUM_PATH=/usr/bin/chromium-browser
+
 RUN yarn
 COPY . .
 RUN yarn build

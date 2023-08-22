@@ -54,7 +54,11 @@ const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const browser = await puppeteer.launch({ headless: true });
 
   const userAgent = new UserAgent();
-  const browserObj = await puppeteerExtra.launch();
+  const browserObj = await puppeteerExtra.launch({
+	headless: true,
+	executablePath: process.env.CHROMIUM_PATH,
+	args: ['--no-sandbox'],
+});
   const page = await browserObj.newPage();
   page.setUserAgent(userAgent.random().toString());
   await page.setViewport({

@@ -9,23 +9,22 @@ puppeteerExtra.use(StealthPlugin());
 const parseSearchData = async (page: any) => {
   return await page.evaluate(() => {
     const parents: any = document.querySelectorAll(".s-card-container");
-    const elements = [...parents]
-      .map((el: any) => {
-        const img = el.querySelector("img"); 
-        const title = el.querySelector("h2");
-        const rating = el.querySelector(".a-size-base");
-        const price = el.querySelector(".a-offscreen");
-        const link = el.querySelector("a");
+    const elements = [...parents].map((el: any) => {
+      const img = el.querySelector("img");
+      const title = el.querySelector("h2");
+      const rating = el.querySelector(".a-size-base");
+      const price = el.querySelector(".a-offscreen");
+      const link = el.querySelector("a");
 
-        return {
-          imgSrc: img?.src,
-          imgAlt: img?.alt,
-          title: title?.innerText,
-          rating: rating?.innerText,
-          price: price?.innerText.replace("\n", ""),
-          link: link?.href
-        };
-      });
+      return {
+        imgSrc: img?.src,
+        imgAlt: img?.alt,
+        title: title?.innerText,
+        rating: rating?.innerText,
+        price: price?.innerText.replace("\n", ""),
+        link: link?.href,
+      };
+    });
 
     return elements;
   });
@@ -35,7 +34,11 @@ const amazonSearchAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const browser = await puppeteer.launch({ headless: true });
 
   const userAgent = new UserAgent();
-  const browserObj = await puppeteerExtra.launch();
+  const browserObj = await puppeteerExtra.launch({
+    headless: true,
+    executablePath: process.env.CHROMIUM_PATH,
+    args: ["--no-sandbox"],
+  });
   const page = await browserObj.newPage();
   page.setUserAgent(userAgent.random().toString());
   await page.setViewport({
