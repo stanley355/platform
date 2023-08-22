@@ -4,6 +4,7 @@ import { FaBuffer } from 'react-icons/fa';
 import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import GoogleLoginBtn from '@/components/app/login/GoogleLoginBtn';
+import { sendFirebaseEvent } from '@/lib/firebase/sendFirebaseEvent';
 
 const Login = () => {
 
@@ -21,6 +22,7 @@ const Login = () => {
 
     const token = jwt.sign({ email }, 'secret');
     Cookies.set("token", token);
+    sendFirebaseEvent("login", {});
     window.location.href = "/";
   }
 

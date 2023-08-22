@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaBuffer, FaSearch, FaShoppingCart, FaUser } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 import { decode } from 'jsonwebtoken';
+import { sendFirebaseEvent } from '@/lib/firebase/sendFirebaseEvent';
 
 const Navbar = () => {
   const [userToken, setUserToken] = useState("");
@@ -21,6 +22,7 @@ const Navbar = () => {
 
     if (!keywords) return;
 
+    sendFirebaseEvent("search", { keywords });
     window.location.href = `/search?keywords=${keywords}`;
   }
 

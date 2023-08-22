@@ -9,6 +9,7 @@ import { dollarToRupiah } from '@/util/dollarToRupiah';
 import { BEST_SELLERS } from '@/lib/cart/constant';
 import { replaceAmazon } from '@/util/replaceAmazon';
 import ItemFallbackSkeleton from '@/components/app/item/FallbackSkeleton';
+import { sendFirebaseEvent } from '@/lib/firebase/sendFirebaseEvent';
 
 
 const ItemPage = (props: any) => {
@@ -20,6 +21,7 @@ const ItemPage = (props: any) => {
   }
 
   const addToCart = () => {
+    sendFirebaseEvent("add_cart", {});
     const oldCart = localStorage.getItem("cart");
     if (oldCart) {
       const parse = JSON.parse(oldCart);
@@ -77,7 +79,7 @@ const ItemPage = (props: any) => {
               <FaShoppingCart className="text-2xl" />
               <span>Tambah Keranjang</span>
             </button>
-            <button className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2'>
+            <button className='flex items-center justify-center gap-2 text-xl w-full rounded mx-auto bg-yellow-300 p-2' onClick={()=> sendFirebaseEvent("buy_now", {}) }>
               <FaHandPointRight className="text-2xl" />
               <span>Beli Langsung</span>
             </button>

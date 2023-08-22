@@ -6,6 +6,7 @@ import { EMPTY_CART_SVG } from '@/lib/home/constant';
 import { dollarToRupiah } from '@/util/dollarToRupiah';
 import { replaceAmazon } from '@/util/replaceAmazon';
 import { removeCurrency } from '@/util/removeCurrency';
+import { sendFirebaseEvent } from '@/lib/firebase/sendFirebaseEvent';
 
 const ShoppingCart = () => {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -53,7 +54,7 @@ const ShoppingCart = () => {
                     <div className='text-xl'>{dollarToRupiah(removeCurrency(item.finalPrice ? item.finalPrice : item.price.replace("\n", "")))}</div>
                   </div>
                 </div>)}
-              <button className='p-2 bg-yellow-300 font-semibold text-center rounded mb-4 w-full '>Checkout</button>
+              <button onClick={() => sendFirebaseEvent("checkout", { })} className='p-2 bg-yellow-300 font-semibold text-center rounded mb-4 w-full '>Checkout</button>
             </div>
           }
           <div className='mt-8 bg-white lg:w-1/3 lg:mt-0 rounded'>
