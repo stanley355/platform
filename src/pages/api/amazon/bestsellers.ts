@@ -35,7 +35,7 @@ const amazonBestSellerAPI = async (
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: "/usr/bin/chromium",
-    args: ["--no-sandbox", '--disable-setuid-sandbox'],
+    args: ["--no-sandbox"],
   });
   const userAgent = new UserAgent();
   const browserObj = await puppeteerExtra.launch();

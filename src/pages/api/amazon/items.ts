@@ -60,7 +60,7 @@ const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const browserObj = await puppeteerExtra.launch({
     headless: true,
     executablePath: "/usr/bin/chromium",
-    args: ["--no-sandbox", '--disable-setuid-sandbox'],
+    args: ["--no-sandbox"],
   });
   const page = await browserObj.newPage();
   page.setUserAgent(userAgent.random().toString());
