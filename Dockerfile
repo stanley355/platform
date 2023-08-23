@@ -46,11 +46,11 @@ COPY . .
 RUN yarn build
 
 
-FROM node:18-alpine as runner
+# FROM node:18-alpine as runner
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY --from=builder /app .
+# COPY --from=builder /app .
 
 EXPOSE 3000
 
