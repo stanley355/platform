@@ -28,14 +28,6 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 # Puppeteer v13.5.0 works with Chromium 100.
 RUN yarn add puppeteer@20
 
-RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
-    && mkdir -p /home/pptruser/Downloads /app \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
- 
-# Run everything after as non-privileged user.
-USER pptruser
-
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -45,6 +37,14 @@ RUN yarn
 COPY . .
 RUN yarn build
 
+
+RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
+    && mkdir -p /home/pptruser/Downloads /app \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /app
+ 
+# Run everything after as non-privileged user.
+USER pptruser
 
 # FROM node:18-alpine as runner
 
