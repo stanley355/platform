@@ -34,7 +34,7 @@ const amazonBestSellerAPI = async (
 ) => {
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: "/usr/bin/chromium",
+    executablePath: process.env.NEXT_PUBLIC_APP_ENV !== "develop" ?  "/usr/bin/chromium" : "",
     args: ["--no-sandbox"],
   });
   const userAgent = new UserAgent();
