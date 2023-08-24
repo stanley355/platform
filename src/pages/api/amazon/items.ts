@@ -55,7 +55,6 @@ const parseItemData = async (page: any) => {
 const amazonItemAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   const browser = await puppeteer.launch({ headless: true });
 
-  console.log(111, req.query.url);
   const userAgent = new UserAgent();
   const browserObj = await puppeteerExtra.launch({
     headless: true,

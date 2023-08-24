@@ -106,9 +106,7 @@ const ItemPage = (props: any) => {
 export default ItemPage;
 export const getStaticProps: GetStaticProps = async (ctx: any) => {
   const idPath = ctx?.params?.id.slice(0, 3).join("/");
-  console.log(123, idPath);
   const endpoint = `${process.env.NEXT_PUBLIC_BASE_URL}api/amazon/items?url=https://amazon.com/${idPath}`;
-  console.log("Endpoint", endpoint);
   const item = await fetch(endpoint);
 
   return {
