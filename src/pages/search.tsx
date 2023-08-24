@@ -65,8 +65,6 @@ export default SearchPage;
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const keywords = ctx?.query?.keywords;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}api/amazon/search?keywords=${keywords}`;
-  console.log("key", keywords);
-  console.log("url", url);
 
   try {
     const searchData = await fetch(url);
