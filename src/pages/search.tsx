@@ -33,7 +33,7 @@ const SearchPage = (props: any) => {
       <div className='container mx-auto bg-gray-100 min-h-screen'>
         <div className='p-4 font-semibold text-xl'>Menampilkan Pencarian untuk &apos;{keywords}&apos;</div>
         {searchData.length < 3 && <NotFound />}
-        <div className='lg:grid lg:grid-cols-4 lg:gap-4'>
+        <div className='grid grid-cols-2 gap-4 lg:grid-cols-4'>
           {searchData.length > 3 && searchData.map((search: any) =>
             <a key={search.title} href={replaceAmazon(search.link, "/item")} className='p-4 rounded bg-white mb-4 cursor-pointer'>
               <img src={search.imgSrc} alt={search.imgAlt} width={400} height={400} className='w-full h-auto max-h-[400px]' />
